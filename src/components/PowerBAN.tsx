@@ -24,13 +24,14 @@ export default function PowerBANLottery() {
   const [isPurchasing, setIsPurchasing] = useState(false);
   const [winAddress, setWinAddress] = useState("");
   const [timeLeft, setTimeLeft] = useState("");
-  const [currentDraw, setCurrentDraw] = useState<{ drawDate: string; jackpot: number } | null>(null);
+  const [currentDraw, setCurrentDraw] = useState<{ drawDate: string; jackpot: number; ticketsBought: number; } | null>(null);
   const [previousDraw, setPreviousDraw] = useState<{
     drawDate: string;
     winningNumbers: number[];
     jackpot: number;
     winners: number;
   } | null>(null);
+
   const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
 
   const addTicket = () => {
@@ -177,7 +178,9 @@ export default function PowerBANLottery() {
       const todayRes = await fetch(`${BASE_API_URL}/draw/today`);
       if (todayRes.ok) {
         const todayData = await todayRes.json();
-        if (todayData.success) setCurrentDraw(todayData);
+        if (todayData.success) {
+          setCurrentDraw(todayData);
+        }
       }
 
       // previous draw
@@ -254,6 +257,9 @@ export default function PowerBANLottery() {
                 {currentDraw ? `${currentDraw.jackpot?.toLocaleString()} BAN` : "Loading..."}
               </div>
               <CardDescription>Next draw in {timeLeft}</CardDescription>
+              {currentDraw?.ticketsBought && (
+                <CardDescription>{currentDraw.ticketsBought} tickets sold</CardDescription>
+              )}
             </CardHeader>
           </Card>
 
