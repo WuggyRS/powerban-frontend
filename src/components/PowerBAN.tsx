@@ -260,12 +260,10 @@ export default function PowerBANLottery() {
           <Card className="flex flex-col justify-center h-full">
             <CardHeader>
               <CardTitle>Previous Draw Results</CardTitle>
-              {previousDraw ? (
+              {previousDraw && (
                 <CardDescription>
                   Draw Date: {new Date(previousDraw.drawDate).toLocaleDateString()}
                 </CardDescription>
-              ) : (
-                <CardDescription>Loading...</CardDescription>
               )}
             </CardHeader>
             <CardContent>
