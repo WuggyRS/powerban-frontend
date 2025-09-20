@@ -165,16 +165,10 @@ export default function PowerBANLottery() {
     }
   };
 
-  function chicagoLocalToUtc(dateString: string): Date {
-    // Interpret dateString as a Central Time local timestamp and convert to UTC
-    const chicagoString = new Date(dateString).toLocaleString('en-US', { timeZone: 'America/Chicago' });
-    return new Date(chicagoString);
-  }
-
   async function fetchNextDraw() {
     const res = await fetch(`${BASE_API_URL}/draw/next-draw`);
     const { nextDraw } = await res.json();
-    startCountdown(chicagoLocalToUtc(nextDraw));
+    startCountdown(new Date(nextDraw));
   }
 
   async function fetchDraws() {
