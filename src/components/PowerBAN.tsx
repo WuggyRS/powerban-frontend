@@ -223,6 +223,11 @@ export default function PowerBANLottery() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">
       <div className="container mx-auto px-4 py-8">
+        {/* Status / issue banner */}
+        <div className="mb-6 rounded-md bg-red-100 border border-red-300 text-red-800 p-4 text-center shadow">
+          PowerBAN is experiencing some issues with the countdown and jackpot for the current draw. Ticket purchases are not impacted and are saved.
+        </div>
+
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-4">
