@@ -225,7 +225,7 @@ export default function PowerBANLottery() {
       <div className="container mx-auto px-4 py-8">
         {/* Status / issue banner */}
         <div className="mb-6 rounded-md bg-red-100 border border-red-300 text-red-800 p-4 text-center shadow">
-          PowerBAN is experiencing some issues with the countdown and jackpot for the current draw. Ticket purchases are not impacted and are saved.
+          PowerBAN is experiencing some issues with the countdown and jackpot for the current draw. Please do not purchase any tickets until the issue is mitigated.
         </div>
 
         {/* Header */}
@@ -513,7 +513,8 @@ export default function PowerBANLottery() {
                 <Button
                   className={`w-full cursor-pointer`}
                   size="lg"
-                  disabled={isPurchasing || tickets.length === 0 || tickets.some((t) => t.numbers.length !== 5) || winAddress === "" || !depositAddress}
+                  // disabled={isPurchasing || tickets.length === 0 || tickets.some((t) => t.numbers.length !== 5) || winAddress === "" || !depositAddress}
+                  disabled={true}
                   onClick={purchaseTickets}
                 >
                   {isPurchasing ? (
