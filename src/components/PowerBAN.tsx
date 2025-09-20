@@ -165,10 +165,16 @@ export default function PowerBANLottery() {
     }
   };
 
+  function chicagoLocalToUtc(dateString: string): Date {
+    // Interpret dateString as a Central Time local timestamp and convert to UTC
+    const chicagoString = new Date(dateString).toLocaleString('en-US', { timeZone: 'America/Chicago' });
+    return new Date(chicagoString);
+  }
+
   async function fetchNextDraw() {
     const res = await fetch(`${BASE_API_URL}/draw/next-draw`);
     const { nextDraw } = await res.json();
-    startCountdown(new Date(nextDraw));
+    startCountdown(chicagoLocalToUtc(nextDraw));
   }
 
   async function fetchDraws() {
@@ -251,7 +257,7 @@ export default function PowerBANLottery() {
             <CardHeader className="text-center">
               <CardTitle className="text-2xl">Current Jackpot</CardTitle>
               <div className="text-4xl font-bold text-primary">
-                {currentDraw ? `${currentDraw.jackpot.toLocaleString()} BAN` : "Loading..."}
+                {currentDraw ? `${currentDraw.jackpot?.toLocaleString()} BAN` : "Loading..."}
               </div>
               <CardDescription>Next draw in {timeLeft}</CardDescription>
             </CardHeader>
@@ -262,7 +268,17 @@ export default function PowerBANLottery() {
               <CardTitle>Previous Draw Results</CardTitle>
               {previousDraw && (
                 <CardDescription>
-                  Draw Date: {new Date(previousDraw.drawDate).toLocaleDateString()}
+                  Draw Date: {(
+                    new Date(previousDraw.drawDate).toLocaleString('en-US', {
+                      timeZone: 'America/Chicago',
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      hour12: true,
+                    })
+                  )}
                 </CardDescription>
               )}
             </CardHeader>
