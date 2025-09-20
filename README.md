@@ -1,2 +1,2 @@
 # powerban-frontend
-Frontend service for PowerBAN
+Frontend website for PowerBAN
