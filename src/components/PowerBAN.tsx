@@ -290,7 +290,7 @@ export default function PowerBANLottery() {
                 </div>
                 <div className="flex flex-col items-center justify-center rounded-lg bg-white/60 p-3 shadow">
                   <span className="text-lg font-semibold text-primary">2 Numbers</span>
-                  <span className="text-2xl font-bold text-emerald-600">250 BAN</span>
+                  <span className="text-2xl font-bold text-emerald-600">100 BAN</span>
                 </div>
               </div>
               <CardDescription className="text-center mt-4">Note: All prizes are split evenly amongst the winners.</CardDescription>
