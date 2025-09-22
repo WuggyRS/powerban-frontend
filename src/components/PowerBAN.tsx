@@ -255,17 +255,41 @@ export default function PowerBANLottery() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-8 items-stretch">
-          <Card className="flex flex-col justify-center bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20 h-full">
+          <Card className="bg-gradient-to-r from-primary/10 to-secondary/10 border-primary/20">
             <CardHeader className="text-center">
-              <CardTitle className="text-2xl">Current Jackpot</CardTitle>
-              <div className="text-4xl font-bold text-primary">
+              <CardTitle className="text-2xl mb-2">Current Jackpot</CardTitle>
+              <div className="text-4xl font-bold text-primary mb-1">
                 {currentDraw ? `${currentDraw.jackpot?.toLocaleString()} BAN` : "Loading..."}
               </div>
-              <CardDescription>Next draw in {timeLeft}</CardDescription>
-              {currentDraw?.ticketsBought && (
-                <CardDescription>{currentDraw.ticketsBought} tickets sold</CardDescription>
+              <CardDescription className="mb-4">
+                Next draw in {timeLeft}
+              </CardDescription>
+              {typeof currentDraw?.ticketsBought === "number" && (
+                <div className="flex justify-center">
+                  <Badge variant="secondary" className="text-xs px-2 py-1">
+                    🎟 {currentDraw.ticketsBought.toLocaleString()} tickets sold
+                  </Badge>
+                </div>
               )}
             </CardHeader>
+
+            {/* TODO: Uncomment when partial matches are released */}
+            {/* <CardContent>
+              <div className="grid sm:grid-cols-3 gap-4 text-center">
+                <div className="flex flex-col items-center justify-center rounded-lg bg-white/60 p-3 shadow">
+                  <span className="text-lg font-semibold text-primary">4 Numbers</span>
+                  <span className="text-2xl font-bold text-emerald-600">1,000 BAN</span>
+                </div>
+                <div className="flex flex-col items-center justify-center rounded-lg bg-white/60 p-3 shadow">
+                  <span className="text-lg font-semibold text-primary">3 Numbers</span>
+                  <span className="text-2xl font-bold text-emerald-600">300 BAN</span>
+                </div>
+                <div className="flex flex-col items-center justify-center rounded-lg bg-white/60 p-3 shadow">
+                  <span className="text-lg font-semibold text-primary">2 Numbers</span>
+                  <span className="text-2xl font-bold text-emerald-600">25 BAN</span>
+                </div>
+              </div>
+            </CardContent> */}
           </Card>
 
           <Card className="flex flex-col justify-center h-full">
@@ -504,6 +528,7 @@ export default function PowerBANLottery() {
                     </li>
                     <li>3. Enter a win address to receive your payment and buy the tickets</li>
                     <li>4. Your tickets will be confirmed automatically</li>
+                    <li>5. Match all 5 numbers to hit the jackpot and win BIG!</li>
                   </ol>
                   {/* <p className="text-xs text-muted-foreground mt-2">
                     Note: For each 10 BAN ticket, 8 BAN rolls over into the next jackpot pool and 2 BAN is reserved for the operator fee.
