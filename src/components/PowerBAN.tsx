@@ -279,20 +279,21 @@ export default function PowerBANLottery() {
             </CardHeader>
 
             <CardContent>
-              <div className="grid sm:grid-cols-3 gap-4 text-center">
+              <div className="grid sm:grid-cols-3 gap-4 text-center items-stretch">
                 <div className="flex flex-col items-center justify-center rounded-lg bg-white/60 p-3 shadow">
                   <span className="text-lg font-semibold text-primary">4 Numbers</span>
                   <span className="text-2xl font-bold text-emerald-600">1,000 BAN</span>
                 </div>
                 <div className="flex flex-col items-center justify-center rounded-lg bg-white/60 p-3 shadow">
                   <span className="text-lg font-semibold text-primary">3 Numbers</span>
-                  <span className="text-2xl font-bold text-emerald-600">300 BAN</span>
+                  <span className="text-2xl font-bold text-emerald-600">500 BAN</span>
                 </div>
                 <div className="flex flex-col items-center justify-center rounded-lg bg-white/60 p-3 shadow">
                   <span className="text-lg font-semibold text-primary">2 Numbers</span>
-                  <span className="text-2xl font-bold text-emerald-600">25 BAN</span>
+                  <span className="text-2xl font-bold text-emerald-600">250 BAN</span>
                 </div>
               </div>
+              <CardDescription className="text-center mt-4">Note: All prizes are split evenly amongst the winners.</CardDescription>
             </CardContent>
           </Card>
 
