@@ -29,7 +29,12 @@ export default function PowerBANLottery() {
     drawDate: string;
     winningNumbers: number[];
     jackpot: number;
-    winners: number;
+    winners: {
+      winners: number;
+      match4: number;
+      match3: number;
+      match2: number;
+    };
   } | null>(null);
 
   const BASE_API_URL = import.meta.env.VITE_BASE_API_URL;
@@ -273,8 +278,7 @@ export default function PowerBANLottery() {
               )}
             </CardHeader>
 
-            {/* TODO: Uncomment when partial matches are released */}
-            {/* <CardContent>
+            <CardContent>
               <div className="grid sm:grid-cols-3 gap-4 text-center">
                 <div className="flex flex-col items-center justify-center rounded-lg bg-white/60 p-3 shadow">
                   <span className="text-lg font-semibold text-primary">4 Numbers</span>
@@ -289,7 +293,7 @@ export default function PowerBANLottery() {
                   <span className="text-2xl font-bold text-emerald-600">25 BAN</span>
                 </div>
               </div>
-            </CardContent> */}
+            </CardContent>
           </Card>
 
           <Card className="flex flex-col justify-center h-full">
@@ -327,13 +331,12 @@ export default function PowerBANLottery() {
                       </div>
                     ))}
                   </div>
-                  <div className="text-center text-sm text-muted-foreground">
-                    Jackpot Amount: {previousDraw.jackpot.toLocaleString()} BAN • Winners: {previousDraw.winners ?? 0}
+                  <div className="space-y-1 text-center text-sm text-muted-foreground">
+                    Jackpot Amount: {previousDraw?.jackpot?.toLocaleString() ?? 0} BAN • Winners: {previousDraw?.winners?.winners ?? 0}
                   </div>
-                  {/* TODO: Uncomment when partial matches is released */}
-                  {/* <div className="space-y-1 text-center text-sm text-muted-foreground">
+                  <div className="space-y-1 text-center text-sm text-muted-foreground">
                     <div>
-                      🏆 Jackpot Winners: <strong>{previousDraw.winners?.jackpot ?? 0}</strong>
+                      🏆 Jackpot Winners: <strong>{previousDraw.winners?.winners ?? 0}</strong>
                     </div>
                     <div>
                       🥈 4 Numbers Winners: <strong>{previousDraw.winners?.match4 ?? 0}</strong>
@@ -344,7 +347,7 @@ export default function PowerBANLottery() {
                     <div>
                       🏅 2 Numbers Winners: <strong>{previousDraw.winners?.match2 ?? 0}</strong>
                     </div>
-                  </div> */}
+                  </div>
                 </>
               ) : (
                 <p className="text-center text-muted-foreground">No completed draw yet</p>
