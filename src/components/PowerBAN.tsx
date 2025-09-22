@@ -328,8 +328,23 @@ export default function PowerBANLottery() {
                     ))}
                   </div>
                   <div className="text-center text-sm text-muted-foreground">
-                    Prize Pool: {previousDraw.jackpot.toLocaleString()} BAN • Winners: {previousDraw.winners ?? 0}
+                    Jackpot Amount: {previousDraw.jackpot.toLocaleString()} BAN • Winners: {previousDraw.winners ?? 0}
                   </div>
+                  {/* TODO: Uncomment when partial matches is released */}
+                  {/* <div className="space-y-1 text-center text-sm text-muted-foreground">
+                    <div>
+                      🏆 Jackpot Winners: <strong>{previousDraw.winners?.jackpot ?? 0}</strong>
+                    </div>
+                    <div>
+                      🥈 4 Numbers Winners: <strong>{previousDraw.winners?.match4 ?? 0}</strong>
+                    </div>
+                    <div>
+                      🥉 3 Numbers Winners: <strong>{previousDraw.winners?.match3 ?? 0}</strong>
+                    </div>
+                    <div>
+                      🏅 2 Numbers Winners: <strong>{previousDraw.winners?.match2 ?? 0}</strong>
+                    </div>
+                  </div> */}
                 </>
               ) : (
                 <p className="text-center text-muted-foreground">No completed draw yet</p>
