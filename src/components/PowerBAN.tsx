@@ -267,7 +267,7 @@ export default function PowerBANLottery() {
               {typeof currentDraw?.ticketsBought === "number" && (
                 <div className="flex justify-center">
                   <Badge variant="secondary" className="text-xs px-2 py-1">
-                    🎟 {currentDraw.ticketsBought.toLocaleString()} tickets sold
+                    🎟️ {currentDraw.ticketsBought.toLocaleString()} tickets sold
                   </Badge>
                 </div>
               )}
