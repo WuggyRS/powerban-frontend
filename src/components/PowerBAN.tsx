@@ -297,7 +297,7 @@ export default function PowerBANLottery() {
             </CardContent>
           </Card>
 
-          <Card className="flex flex-col justify-center h-full shadow-lg rounded-xl p-6">
+          <Card className="flex flex-col justify-center h-full shadow-sm rounded-xl p-6">
             <CardHeader className="text-center">
               <CardTitle className="text-xl font-semibold mb-1">Previous Draw Results</CardTitle>
               {previousDraw && (
@@ -345,11 +345,13 @@ export default function PowerBANLottery() {
                         {previousDraw?.jackpot?.toLocaleString() ?? 0} BAN
                       </span>
                     </p>
-                    <div className="grid grid-cols-2 gap-2 text-sm">
-                      <p>🏆 Jackpot Winners: <strong>{previousDraw.winners?.winners ?? 0}</strong></p>
-                      <p>🥈 4 Numbers Winners: <strong>{previousDraw.winners?.match4 ?? 0}</strong></p>
-                      <p>🥉 3 Numbers Winners: <strong>{previousDraw.winners?.match3 ?? 0}</strong></p>
-                      <p>🏅 2 Numbers Winners: <strong>{previousDraw.winners?.match2 ?? 0}</strong></p>
+                    <div className="flex justify-center mt-8">
+                      <div>
+                        <div>🏆 Jackpot: <b>{previousDraw.winners?.winners ?? 0}</b></div>
+                        <div>🥈 4 Numbers: <b>{previousDraw.winners?.match4 ?? 0}</b></div>
+                        <div>🥉 3 Numbers: <b>{previousDraw.winners?.match3 ?? 0}</b></div>
+                        <div>🏅 2 Numbers: <b>{previousDraw.winners?.match2 ?? 0}</b></div>
+                      </div>
                     </div>
                   </div>
                 </>
