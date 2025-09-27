@@ -297,61 +297,64 @@ export default function PowerBANLottery() {
             </CardContent>
           </Card>
 
-          <Card className="flex flex-col justify-center h-full">
-            <CardHeader>
-              <CardTitle>Previous Draw Results</CardTitle>
+          <Card className="flex flex-col justify-center h-full shadow-lg rounded-xl p-6">
+            <CardHeader className="text-center">
+              <CardTitle className="text-xl font-semibold mb-1">Previous Draw Results</CardTitle>
               {previousDraw && (
-                <CardDescription>
-                  Draw Date: {(
-                    new Date(`${previousDraw.drawDate}T23:59:00-05:00`).toLocaleString('en-US', {
-                      timeZone: 'America/Chicago',
-                      year: 'numeric',
-                      month: '2-digit',
-                      day: '2-digit',
-                      hour: '2-digit',
-                      minute: '2-digit',
-                      hour12: true,
-                    })
-                  )}
+                <CardDescription className="text-gray-500 text-sm">
+                  Draw Date:&nbsp;
+                  {new Date(`${previousDraw.drawDate}T23:59:00-05:00`).toLocaleString("en-US", {
+                    timeZone: "America/Chicago",
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: true,
+                  })}
                 </CardDescription>
               )}
             </CardHeader>
-            <CardContent>
-              {previousDraw && previousDraw.winningNumbers ? (
+
+            <CardContent className="text-center space-y-5">
+              {previousDraw?.winningNumbers ? (
                 <>
-                  <div className="flex items-center justify-center gap-2 mb-3">
-                    <span className="text-sm text-muted-foreground">Winning Numbers:</span>
-                  </div>
-                  <div className="flex justify-center gap-2 mb-4">
-                    {previousDraw.winningNumbers.map((num) => (
-                      <div
-                        key={num}
-                        className="w-10 h-10 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold"
-                      >
-                        {num}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="space-y-1 text-center text-sm text-muted-foreground">
-                    Jackpot Amount: {previousDraw?.jackpot?.toLocaleString() ?? 0} BAN • Winners: {previousDraw?.winners?.winners ?? 0}
-                  </div>
-                  <div className="space-y-1 text-center text-sm text-muted-foreground">
-                    <div>
-                      🏆 Jackpot Winners: <strong>{previousDraw.winners?.winners ?? 0}</strong>
+                  <div className="flex flex-col items-center space-y-2">
+                    <span className="text-gray-600 text-sm tracking-wide uppercase">Winning Numbers</span>
+
+                    <div className="flex flex-wrap justify-center gap-3">
+                      {previousDraw.winningNumbers.map((num) => (
+                        <div
+                          key={num}
+                          className="relative w-12 h-12 flex items-center justify-center font-bold text-white rounded-full
+                                    bg-gradient-to-b from-green-700 to-green-900 shadow-lg ring-1 ring-green-800/40
+                                    transition-transform duration-150 hover:scale-110"
+                        >
+                          <div className="absolute top-0 left-0 w-full h-full rounded-full
+                                          bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
+                          {num}
+                        </div>
+                      ))}
                     </div>
-                    <div>
-                      🥈 4 Numbers Winners: <strong>{previousDraw.winners?.match4 ?? 0}</strong>
-                    </div>
-                    <div>
-                      🥉 3 Numbers Winners: <strong>{previousDraw.winners?.match3 ?? 0}</strong>
-                    </div>
-                    <div>
-                      🏅 2 Numbers Winners: <strong>{previousDraw.winners?.match2 ?? 0}</strong>
+                  </div>
+
+                  <div className="space-y-2 text-gray-700">
+                    <p className="font-medium">
+                      Jackpot Amount:{" "}
+                      <span className="font-bold text-green-800">
+                        {previousDraw?.jackpot?.toLocaleString() ?? 0} BAN
+                      </span>
+                    </p>
+                    <div className="grid grid-cols-2 gap-2 text-sm">
+                      <p>🏆 Jackpot Winners: <strong>{previousDraw.winners?.winners ?? 0}</strong></p>
+                      <p>🥈 4 Numbers Winners: <strong>{previousDraw.winners?.match4 ?? 0}</strong></p>
+                      <p>🥉 3 Numbers Winners: <strong>{previousDraw.winners?.match3 ?? 0}</strong></p>
+                      <p>🏅 2 Numbers Winners: <strong>{previousDraw.winners?.match2 ?? 0}</strong></p>
                     </div>
                   </div>
                 </>
               ) : (
-                <p className="text-center text-muted-foreground">No completed draw yet</p>
+                <p className="text-center text-gray-500">No completed draw yet</p>
               )}
             </CardContent>
           </Card>
