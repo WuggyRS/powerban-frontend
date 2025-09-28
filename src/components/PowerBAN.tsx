@@ -150,9 +150,6 @@ export default function PowerBANLottery() {
       toast.success(`Successfully purchased ${data.tickets.length} ticket(s)!`);
       setTickets([]);
       getTodayTickets();
-
-      // Save previously used win address
-      localStorage.setItem("powerban_winAddress", winAddress);
     } catch (err: any) {
       toast.error(err.message || "Something went wrong");
     } finally {
@@ -227,6 +224,13 @@ export default function PowerBANLottery() {
   }
 
   const totalCost = tickets.length * 10;
+
+  useEffect(() => {
+    // Save previously used win address
+    if (winAddress) {
+      localStorage.setItem("powerban_winAddress", winAddress);
+    }
+  }, [winAddress]);
 
   useEffect(() => {
     getNewUserId();
