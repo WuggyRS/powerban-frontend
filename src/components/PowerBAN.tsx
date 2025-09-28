@@ -23,6 +23,7 @@ export default function PowerBANLottery() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isPurchasing, setIsPurchasing] = useState(false);
   const [winAddress, setWinAddress] = useState("");
+  const [previousWinAddress, setPreviousWinAddress] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState("");
   const [currentDraw, setCurrentDraw] = useState<{ drawDate: string; jackpot: number; ticketsBought: number; } | null>(null);
   const [previousDraw, setPreviousDraw] = useState<{
@@ -109,6 +110,13 @@ export default function PowerBANLottery() {
     }
   };
 
+  const getPreviousWinAddress = () => {
+    const localWinAddress = localStorage.getItem("powerban_winAddress");
+    if (localWinAddress) {
+      setPreviousWinAddress(localWinAddress);
+    }
+  };
+
   const purchaseTickets = async () => {
     if (isPurchasing || !tickets || tickets.length === 0 || tickets.some((t) => t.numbers.length !== 5) || winAddress === "" || !depositAddress) {
       return;
@@ -142,6 +150,9 @@ export default function PowerBANLottery() {
       toast.success(`Successfully purchased ${data.tickets.length} ticket(s)!`);
       setTickets([]);
       getTodayTickets();
+
+      // Save previously used win address
+      localStorage.setItem("powerban_winAddress", winAddress);
     } catch (err: any) {
       toast.error(err.message || "Something went wrong");
     } finally {
@@ -220,6 +231,7 @@ export default function PowerBANLottery() {
   useEffect(() => {
     getNewUserId();
     getDepositAddress();
+    getPreviousWinAddress();
     getTodayTickets();
     fetchNextDraw();
     fetchDraws();
@@ -539,8 +551,30 @@ export default function PowerBANLottery() {
                     </Tooltip>
                   </Label>
                   <div>
-                    <Input id="winAddress" placeholder="ban_1powerbanwin..." className="font-mono text-sm" onChange={(e) => setWinAddress(e.target.value)} />
+                    <Input
+                      id="winAddress"
+                      placeholder="ban_1powerbanwin..."
+                      className="font-mono text-sm"
+                      onChange={(e) => setWinAddress(e.target.value)}
+                      value={winAddress}
+                    />
                   </div>
+
+                  {previousWinAddress && previousWinAddress.length > 20 && (
+                    <div className="mt-2 text-sm text-muted-foreground flex items-center gap-2">
+                      <span>Previously used address:</span>
+                      <div className="flex">
+                        <img src={`https://monkey.banano.cc/api/v1/monkey/${previousWinAddress}`} width={40} />
+                        <button
+                          type="button"
+                          onClick={() => setWinAddress(previousWinAddress)}
+                          className="text-primary cursor-pointer hover:no-underline"
+                        >
+                          {`${previousWinAddress.slice(0, 10)}...${previousWinAddress.slice(-10)}`}
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="bg-muted p-4 rounded-lg space-y-2">
