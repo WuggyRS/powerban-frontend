@@ -246,7 +246,7 @@ export default function PowerBANLottery() {
       <div className="container mx-auto px-4 py-8">
         {/* Status / issue banner */}
         <div className="mb-6 rounded-md bg-red-100 border border-red-300 text-red-800 p-4 text-center shadow">
-          The 10/13/25 draw failed to execute due to a bug in the code where the payout system was trying to send BAN to its own wallet. This draw will be completed manually and winners will receive their payout as normal. Apologies for the inconvenience.
+          The 10/13/25 draw failed to execute due to a bug in the code where the payout system was trying to send BAN to an invalid address. This draw was completed manually and winners will receive their payout as normal. Apologies for the inconvenience.
         </div>
 
         {/* Header */}
