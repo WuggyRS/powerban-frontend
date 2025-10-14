@@ -245,9 +245,9 @@ export default function PowerBANLottery() {
     <div className="min-h-screen bg-gradient-to-br from-background via-card to-background">
       <div className="container mx-auto px-4 py-8">
         {/* Status / issue banner */}
-        {/* <div className="mb-6 rounded-md bg-red-100 border border-red-300 text-red-800 p-4 text-center shadow">
-          There was an issue with the drawing which is actively being fixed. The winning numbers were: 2,7,17,27,34. There were no winners. 
-        </div> */}
+        <div className="mb-6 rounded-md bg-red-100 border border-red-300 text-red-800 p-4 text-center shadow">
+          The 10/13/25 draw failed to execute due to a bug in the code where the payout system was trying to send BAN to its own wallet. This draw will be completed manually and winners will receive their payout as normal. Apologies for the inconvenience.
+        </div>
 
         {/* Header */}
         <div className="text-center mb-12">
